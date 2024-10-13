@@ -7,12 +7,6 @@ pipeline
     }
     stages
     {
-        stage('Prepare')
-        {
-            steps {
-                sh 'mkdir -p abcd-lab:/${WORKSPACE}/results'
-            }
-        }
         stage('Code checkout from GitHub')
         {
             steps
@@ -23,6 +17,12 @@ pipeline
                     sh 'git config --global http.postBuffer 524288000'
                     git credentialsId: 'github-pat', url: 'https://github.com/MartinWoad/abcd-student-marcin-krupa', branch: 'main'
                 }
+            }
+        }
+        stage('Prepare')
+        {
+            steps {
+                sh 'mkdir -p abcd-lab:/${WORKSPACE}/results'
             }
         }
         stage('ZAP Passive Scan')
