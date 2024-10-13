@@ -72,7 +72,7 @@ pipeline
         {
                 steps
                 {
-                    archiveArtifacts artifacts: 'zap_html_report.html', 'zap_xml_report.xml', allowEmptyArchive: true
+                    archiveArtifacts artifacts: 'zap_html_report.html, zap_xml_report.xml', allowEmptyArchive: true
                 }
         }
     }
