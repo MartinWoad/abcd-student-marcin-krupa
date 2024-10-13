@@ -43,9 +43,9 @@ pipeline
                     || true
                 '''
                 sh '''
-                    docker cp zap:/zap/wrk/results/zap_html_report.html /tmp/zap_html_report.html
+                    docker cp zap:/zap/wrk/reports/zap_html_report.html /tmp/zap_html_report.html
                     docker cp /tmp/zap_html_report.html abcd-lab:/"${WORKSPACE}"/results/zap_html_report.html
-                    docker cp zap:/zap/wrk/results/zap_xml_report.xml /tmp/zap_xml_report.xml
+                    docker cp zap:/zap/wrk/reports/zap_xml_report.xml /tmp/zap_xml_report.xml
                     docker cp /tmp/zap_xml_report.xml abcd-lab:/"${WORKSPACE}"/results/zap_xml_report.xml
                 '''
             }
@@ -54,10 +54,10 @@ pipeline
                 always
                 {
                     sh '''
-                        rm /tmp/zap_html_report.html
-                        rm /tmp/zap_xml_report.xml
-                        docker stop zap juice-shop
-                        docker rm zap juice-shop
+                        rm /tmp/zap_html_report.html || true
+                        rm /tmp/zap_xml_report.xml || true
+                        docker stop zap juice-shop || true
+                        docker rm zap juice-shop || true
                     '''
                 }
             }
