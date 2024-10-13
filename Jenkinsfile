@@ -68,12 +68,22 @@ pipeline
                 }
             }
         }
-        stage('Archive Artifact')
+        stage('Archive Artifacts')
         {
                 steps
                 {
                     archiveArtifacts artifacts: 'results/zap_html_report.html, results/zap_xml_report.xml', allowEmptyArchive: true
                 }
+        }
+        stage('Publish to DefectDojo')
+        {
+            steps
+            {
+                defectDojoPublisher(artifact: 'results/zap_xml_report.xml',
+                    productName: 'Juice Shop',
+                    scanType: 'ZAP Scan',
+                    engagementName: 'marcin.krupa.96@gmail.com')
+            }
         }
     }
 }
