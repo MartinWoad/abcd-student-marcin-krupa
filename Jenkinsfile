@@ -14,6 +14,7 @@ pipeline
                 script
                 {
                     cleanWs()
+                    sh 'git config --global http.postBuffer 524288000'
                     git credentialsId: 'github-pat', url: 'https://github.com/MartinWoad/abcd-student-marcin-krupa', branch: 'main'
                 }
             }
