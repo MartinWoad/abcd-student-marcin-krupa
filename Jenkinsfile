@@ -31,7 +31,7 @@ pipeline
                 sh '''
                     docker run --name zap \
                     --add-host=host.docker.internal:host-gateway \
-                    -v /home/marcin/ABC-DevSecOps/abcd-student-marcin-krupa/.zap:/zap/wrk/:rw
+                    -v /home/marcin/ABC-DevSecOps/abcd-student-marcin-krupa/.zap:/zap/wrk/:rw \
                     -t ghcr.io/zaproxy/zaproxy:stable bash -c \
                     "zap.sh -cmd -addonupdate; \
                     zap.sh -cmd \
