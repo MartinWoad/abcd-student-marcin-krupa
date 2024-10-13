@@ -38,7 +38,7 @@ pipeline
                     -addoninstall communityScripts \
                     -addoninstall pscanrulesAlpha \
                     -addoninstall pscanrulesBeta \
-                    -autorun /zap/wrk/passive_scan.yaml" \
+                    -autorun /zap/wrk/passive.yaml" \
                     || true
                 '''
             }
