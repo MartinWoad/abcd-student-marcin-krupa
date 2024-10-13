@@ -38,12 +38,11 @@ pipeline
                     -addoninstall communityScripts \
                     -addoninstall pscanrulesAlpha \
                     -addoninstall pscanrulesBeta \
-                    -autorun /zap/wrk/passive.yaml" \
-                    || true
-                '''
-                sh '''
-                    docker exec zap scp /zap/wrk/results/zap_html_report.html abcd-lab:/"${WORKSPACE}"/results/zap_html_report.html
+                    -autorun /zap/wrk/passive.yaml;
+                    docker exec zap scp /zap/wrk/results/zap_html_report.html abcd-lab:/"${WORKSPACE}"/results/zap_html_report.html;
                     docker exec zap scp /zap/wrk/results/zap_xml_report.xml abcd-lab:/"${WORKSPACE}"/results/zap_xml_report.xml
+                    " \
+                    || true
                 '''
             }
             post
@@ -52,6 +51,7 @@ pipeline
                 {
                     sh '''
                         docker stop zap juice-shop
+                        docker rm zap juice-shop
                     '''
                 }
             }
