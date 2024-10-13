@@ -47,8 +47,13 @@ pipeline
                 always
                 {
                     sh '''
-                        docker exec zap scp /zap/wrk/zap_html_report.html abcd-lab:/"${WORKSPACE}"/results/zap_html_report.html
-                        docker exec zap scp /zap/wrk/zap_xml_report.xml abcd-lab:/"${WORKSPACE}"/results/zap_xml_report.xml
+                        docker exec zap scp /zap/wrk/results/zap_html_report.html abcd-lab:/"${WORKSPACE}"/results/zap_html_report.html
+                        docker exec zap scp /zap/wrk/results/zap_xml_report.xml abcd-lab:/"${WORKSPACE}"/results/zap_xml_report.xml
+                    '''
+                }
+                always
+                {
+                    sh '''
                         docker stop zap juice-shop
                     '''
                 }
