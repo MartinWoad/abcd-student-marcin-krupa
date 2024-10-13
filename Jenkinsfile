@@ -10,7 +10,7 @@ pipeline
         stage('Prepare')
         {
             steps {
-                sh 'mkdir -p ${WORKSPACE}/results'
+                sh 'mkdir -p abcd-lab:/${WORKSPACE}/results'
             }
         }
         stage('Code checkout from GitHub')
