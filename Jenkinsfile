@@ -7,6 +7,12 @@ pipeline
     }
     stages
     {
+        stage('Prepare')
+        {
+            steps {
+                sh 'mkdir -p ${WORKSPACE}/results'
+            }
+        }
         stage('Code checkout from GitHub')
         {
             steps
