@@ -55,6 +55,11 @@ pipeline
                     docker cp /tmp/zap_xml_report.xml abcd-lab:/"${WORKSPACE}"/results/zap_xml_report.xml
                 '''
             }
+            stage('Archive Artifact') {
+                steps {
+                    archiveArtifacts artifacts: 'zap_html_report.html', 'zap_xml_report.xml', allowEmptyArchive: true
+                }
+            }
             post
             {
                 always
