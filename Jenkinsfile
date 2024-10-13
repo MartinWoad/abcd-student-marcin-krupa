@@ -18,7 +18,7 @@ pipeline
                 }
             }
         }
-        stage('[ZAP] Baseline passive-scan')
+        stage('ZAP Passive Scan')
         {
             steps
             {
@@ -41,16 +41,13 @@ pipeline
                     -autorun /zap/wrk/passive.yaml" \
                     || true
                 '''
+                sh '''
+                    docker exec zap scp /zap/wrk/results/zap_html_report.html abcd-lab:/"${WORKSPACE}"/results/zap_html_report.html
+                    docker exec zap scp /zap/wrk/results/zap_xml_report.xml abcd-lab:/"${WORKSPACE}"/results/zap_xml_report.xml
+                '''
             }
             post
             {
-                always
-                {
-                    sh '''
-                        docker exec zap scp /zap/wrk/results/zap_html_report.html abcd-lab:/"${WORKSPACE}"/results/zap_html_report.html
-                        docker exec zap scp /zap/wrk/results/zap_xml_report.xml abcd-lab:/"${WORKSPACE}"/results/zap_xml_report.xml
-                    '''
-                }
                 always
                 {
                     sh '''
