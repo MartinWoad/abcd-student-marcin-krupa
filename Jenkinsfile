@@ -22,7 +22,7 @@ pipeline
         stage('Prepare')
         {
             steps {
-                sh 'docker exec abcd-lab mkdir -p ${WORKSPACE}/results'
+                sh 'docker exec abcd-lab mkdir -p "${WORKSPACE}"/results'
             }
         }
         stage('ZAP Passive Scan')
