@@ -87,7 +87,7 @@ pipeline
                     archiveArtifacts artifacts: 'results/zap_html_report.html, results/zap_xml_report.xml, results/sca-osv-scanner.json, results/trufflehog_report.json', allowEmptyArchive: true
                 }
         }
-        /*stage('Publish to DefectDojo')
+        stage('Publish to DefectDojo')
         {
             steps
             {
@@ -104,6 +104,6 @@ pipeline
                     scanType: 'Trufflehog Scan',
                     engagementName: 'marcin.krupa.96@gmail.com')
             }
-        }*/
+        }
     }
 }
