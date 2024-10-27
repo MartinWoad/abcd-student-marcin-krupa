@@ -77,7 +77,7 @@ pipeline
         stage('TruffleHog Scan') {
             steps
             {
-                sh 'trufflehog git https://github.com/MartinWoad/abcd-student-marcin-krupa --branch main --json --only-verified --output results/trufflehog_report.json'
+                sh 'trufflehog git https://github.com/MartinWoad/abcd-student-marcin-krupa --branch main --json --only-verified > results/trufflehog_report.json'
             }
         }
         stage('Archive Artifacts')
