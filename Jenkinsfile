@@ -87,23 +87,23 @@ pipeline
                     archiveArtifacts artifacts: 'results/zap_html_report.html, results/zap_xml_report.xml, results/sca-osv-scanner.json, results/trufflehog_report', allowEmptyArchive: true
                 }
         }
-        #stage('Publish to DefectDojo')
-        #{
-        #    steps
-        #    {
-        #        defectDojoPublisher(artifact: 'results/zap_xml_report.xml',
-        #            productName: 'Juice Shop',
-        #            scanType: 'ZAP Scan',
-        #            engagementName: 'marcin.krupa.96@gmail.com')
-        #        defectDojoPublisher(artifact: 'results/sca-osv-scanner.json',
-        #            productName: 'Juice Shop',
-        #            scanType: 'OSV Scan',
-        #            engagementName: 'marcin.krupa.96@gmail.com')
-        #        defectDojoPublisher(artifact: 'results/trufflehog_report.json',
-        #            productName: 'Juice Shop',
-        #            scanType: 'Trufflehog Scan',
-        #            engagementName: 'marcin.krupa.96@gmail.com')
-        #    }
-        #}
+        /*stage('Publish to DefectDojo')
+        {
+            steps
+            {
+                defectDojoPublisher(artifact: 'results/zap_xml_report.xml',
+                    productName: 'Juice Shop',
+                    scanType: 'ZAP Scan',
+                    engagementName: 'marcin.krupa.96@gmail.com')
+                defectDojoPublisher(artifact: 'results/sca-osv-scanner.json',
+                    productName: 'Juice Shop',
+                    scanType: 'OSV Scan',
+                    engagementName: 'marcin.krupa.96@gmail.com')
+                defectDojoPublisher(artifact: 'results/trufflehog_report.json',
+                    productName: 'Juice Shop',
+                    scanType: 'Trufflehog Scan',
+                    engagementName: 'marcin.krupa.96@gmail.com')
+            }
+        }*/
     }
 }
