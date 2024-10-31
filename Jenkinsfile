@@ -87,7 +87,7 @@ pipeline
         stage('Semgrep Scan') {
             steps
             {
-                sh "semgrep --config auto --json --url https://github.com/MartinWoad/abcd-student-marcin-krupa --branch main > results/semgrep_report.json"
+                sh "semgrep --config auto --json > results/semgrep_report.json"
             }
         }
         stage('Archive Artifacts')
