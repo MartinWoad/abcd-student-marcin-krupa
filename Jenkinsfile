@@ -25,7 +25,6 @@ pipeline
                 sh 'docker exec abcd-lab mkdir -p "${WORKSPACE}"/results'
             }
         }
-        /*
         stage('ZAP Passive Scan')
         {
             steps
@@ -69,7 +68,6 @@ pipeline
                 }
             }
         }
-        */
         stage('SCA Scan')
         {
             steps
@@ -97,7 +95,7 @@ pipeline
                     archiveArtifacts artifacts: 'results/zap_html_report.html, results/zap_xml_report.xml, results/sca-osv-scanner.json, results/trufflehog_report.json, results/semgrep_report.json', allowEmptyArchive: true
                 }
         }
-        /*stage('Publish to DefectDojo')
+        stage('Publish to DefectDojo')
         {
             steps
             {
@@ -118,6 +116,6 @@ pipeline
                     scanType: 'Semgrep JSON Report',
                     engagementName: 'marcin.krupa.96@gmail.com')
             }
-        }*/
+        }
     }
 }
