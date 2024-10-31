@@ -25,6 +25,7 @@ pipeline
                 sh 'docker exec abcd-lab mkdir -p "${WORKSPACE}"/results'
             }
         }
+        /*
         stage('ZAP Passive Scan')
         {
             steps
@@ -68,26 +69,35 @@ pipeline
                 }
             }
         }
-        stage('SCA Scan') {
+        */
+        stage('SCA Scan')
+        {
             steps
             {
                 sh 'osv-scanner scan --lockfile package-lock.json --format json --output results/sca-osv-scanner.json || [ $? -eq 1 ]'
             }
         }
-        stage('TruffleHog Scan') {
+        stage('TruffleHog Scan')
+        {
             steps
             {
                 sh 'trufflehog git https://github.com/MartinWoad/abcd-student-marcin-krupa --branch main --json --only-verified > results/trufflehog_report.json'
+            }
+        }
+        stage('Semgrep Scan') {
+            steps
+            {
+                sh "semgrep --config auto --json --url https://github.com/MartinWoad/abcd-student-marcin-krupa --branch main > results/semgrep_report.json"
             }
         }
         stage('Archive Artifacts')
         {
                 steps
                 {
-                    archiveArtifacts artifacts: 'results/zap_html_report.html, results/zap_xml_report.xml, results/sca-osv-scanner.json, results/trufflehog_report.json', allowEmptyArchive: true
+                    archiveArtifacts artifacts: 'results/zap_html_report.html, results/zap_xml_report.xml, results/sca-osv-scanner.json, results/trufflehog_report.json, results/semgrep_report.json', allowEmptyArchive: true
                 }
         }
-        stage('Publish to DefectDojo')
+        /*stage('Publish to DefectDojo')
         {
             steps
             {
@@ -103,7 +113,11 @@ pipeline
                     productName: 'Juice Shop',
                     scanType: 'Trufflehog Scan',
                     engagementName: 'marcin.krupa.96@gmail.com')
+                defectDojoPublisher(artifact: 'results/semgrep_report.json',
+                    productName: 'Juice Shop',
+                    scanType: 'Semgrep JSON Report',
+                    engagementName: 'marcin.krupa.96@gmail.com')
             }
-        }
+        }*/
     }
 }
